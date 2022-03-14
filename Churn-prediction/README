@@ -1,1 +1,26 @@
 
+
+Approach:
+As it is a Classification problem, I checked and observed it is an imbalanced dataset. I used data pre-processing and tried sampling methods oversampling and SMOTE. But I could see oversampling and SMOTE drastically increased accuracy. Random forest is my base model.
+Exploratory Data Analysis:
+•	Performed and EDA and found out there are 23.1% churn customers and 76.9% non-churn customers which gives an insight that it’s an imbalanced dataset.
+•	Noted all the features are giving some insights on prediction except gender and ID. Observed remaining all features are having difference in engagement score which helps in prediction.
+•	ID column has to be dropped as it will be having unique value for each and every row. So, it cannot be used prediction.
+•	Still keeping the age column as there is a little difference in the distribution.
+•	Checked for multicollinearity using corr() method which gives correlation among all the features. Observed there are no collinear features,
+
+Feature Engineering:
+•	Outlier capping : Observed there are outliers in the Age column. Hence removed them using capping technique. Tree models are robust to outliers but as I’m trying out different models removed the outliers.
+•	Encoding: Converted categorical to numerical values using pandas libraries get_dummies() method. 
+•	Scaling: Performed feature scaling using StandardScaler. This converts all the values in to the same range where mean=0 and standardDeviation=1. Scaling is not required for Tree algorithms, but I was trying different algorithms like LogisticRegression, SVM, GBM. As these are distance-based algorithms, they require scaling.
+Model Selection: 
+•	I tried Tree based models and boosting models as tree-based algorithms works good on imbalanced data.
+•	Observed XGBoost and Random forests are giving good and similar accuracy on imbalanced data.
+•	Hyper parameter tuning increased the accuracy of around 10%.
+•	I also performed sampling techniques Oversampling and SMOTE to balance the dataset. Now I performed predictions using XGBoost and random forest which are also giving statistically similar accuracy as with imbalanced data.
+•	Finally, I can see XGBoost and Random Forests are giving good accuracy on the test data than all other algorithms Logistic regression, SVM, Decision trees, Boosting algorithms (LGBM, GBM).
+•	Finalised the model as Random Forest with oversampled data as it’s giving 1% higher accuracy. 
+•	Finally, saved the trained model using joblib.
+
+
+
